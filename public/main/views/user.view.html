@@ -1,0 +1,44 @@
+<!-- Menu Toggle Button -->
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding:3px 15px;">
+  <!-- The user image in the navbar-->
+  <div style="width:40px;height:40px;border-radius:50%;overflow:hidden;margin:0 auto;display:inline-block;">
+    <img ng-src="app/photos/{{mainUser.src}}" alt="User Image" style="width:40px;height:auto;">
+  </div>
+  <!--<img ng-src="app/photos/{{mainUser.src}}" class="user-image" alt="User Image">-->
+  <!-- hidden-xs hides the username on small devices so only the image appears. -->
+  <span class="hidden-xs" style="position:relative;top:-15px">{{mainUser.name}} {{mainUser.last_name}}</span>
+</a>
+<ul class="dropdown-menu">
+  <!-- The user image in the menu -->
+  <li class="user-header">
+    <div style="width:100px;height:100px;border-radius:50%;overflow:hidden;margin:0 auto;border:3px solid #807dba">
+      <img ng-src="app/photos/{{mainUser.src}}" alt="User Image" style="width:100px;height:auto;">
+    </div>
+
+    <p>
+      {{ mainUser.name | palabra }} {{ mainUser.last_name | palabra }} - {{userTYPE}}
+      <small>{{mainUser.registered | date:"fullDate"}} </small>
+    </p>
+  </li>
+  <!-- Menu Body -->
+  <li class="user-body">
+    <div class="row">
+      <div class="col-xs-6 text-center">
+        <span>{{mainUser.ci}} {{mainUser.ex}} </span>
+      </div>
+      <div class="col-xs-6 text-center">
+        <span title="{{mainUser.email}}">{{mainUser.email | textoCorto}} </span>
+      </div>
+    </div>
+    <!-- /.row -->
+  </li>
+  <!-- Menu Footer-->
+  <li class="user-footer">
+    <div class="pull-left">
+      <a ng-click="mostrarUserModal();" class="btn btn-default btn-flat">Editar</a>
+    </div>
+    <div class="pull-right">
+      <a ng-click="salir();" class="btn btn-default btn-flat">Salir</a>
+    </div>
+  </li>
+</ul>

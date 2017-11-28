@@ -1,0 +1,179 @@
+<div class="modal fade" id="modal_give">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title">Realizar un prestamo: </h4>
+      </div>
+
+
+      <form name="formulario"
+            ng-submit="guardar( giveSel, formulario )"
+            novalidate="novalidate">
+
+        <div class="modal-body">
+
+          <div class="form-group">
+            <label class="mano" ng-click="viewUs = !viewUs;">Prestamista </label> <span>Seleccionado ID: {{giveSel.id_user}} </span>
+            <div class="animated fadeIn" ng-show="viewUs">
+              <!-- /.filtros -->
+              <div class="filtros">
+              <div class="form-group busqueda linea b-largo">
+                <label for="busqueda"><i class="fa fa-search mano" aria-hidden="true"></i></label>
+                <input id="busqueda" type="text" 
+                  placeholder="Busque aqui..." 
+                  disable-valid-styling="true"
+                  ng-model="presModel">
+              </div>
+              </div>
+              <div class="form-group">
+                <input type="hidden" ng-model="giveSel.id_user">
+              </div>
+
+              <table class="table table-bordered responsive-table">
+                <thead>
+                  <tr>
+                    <th><a class="mano" ng-click="colPres='id_pres'; reverseD = !reverseD;">#</a></th>
+                    <th><a class="mano" ng-click="colPres='ci_pres'; reverseD = !reverseD;">CI</a></th>
+                    <th><a class="mano" ng-click="colPres='last_name_pres'; reverseD = !reverseD;">Nombre</a></th>
+                    <th>Seleccione uno</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="pres in prestamista | filter:presModel | orderBy:colPres:reverseD | limitTo: 3">
+                    <td>{{ pres.id_pres }}</td>
+                    <td>{{ pres.ci_pres }}</td>
+                    <td>{{ pres.last_name_pres }} {{ pres.name_pres }} </td>
+                    <td>
+                      <a ng-click="viewUs = !viewUs; llenar_prestamista( giveSel,pres.id_pres );" class="btn btn-default"><i class="fa fa-hand-o-up"></i></a>
+                    </td>
+                  </tr>
+                </tbody>
+
+              </table>
+            </div>
+          </div>
+
+
+
+          <div class="form-group">
+            <label class="mano" ng-click="viewCli = !viewCli;">Cliente </label> <span>Seleccionado ID: {{giveSel.id_clients}} </span>
+            <div class="animated fadeIn" ng-show="viewCli">
+              <!-- /.filtros -->
+              <div class="filtros">
+              <div class="form-group busqueda linea b-largo">
+                <label for="busqueda"><i class="fa fa-search mano" aria-hidden="true"></i></label>
+                <input id="busqueda" type="text" 
+                placeholder="Busque aqui..." 
+                disable-valid-styling="true"
+                ng-model="cliModel">
+              </div>
+              </div>
+              <div class="form-group">
+                <input type="hidden" ng-model="giveSel.id_clients">
+              </div>
+
+              <table class="table table-bordered responsive-table">
+                <thead>
+                  <tr>
+                    <th><a class="mano" ng-click="colCli='id_cli'; reverseD = !reverseD;">#</a></th>
+                    <th><a class="mano" ng-click="colCli='ci_cli'; reverseD = !reverseD;">CI</a></th>
+                    <th><a class="mano" ng-click="colCli='last_name_cli'; reverseD = !reverseD;">Nombre</a></th>
+                    <th>Seleccione uno</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="cli in cliente | filter:cliModel | orderBy:colCli:reverseD | limitTo: 4">
+                    <td>{{ cli.id_cli }}</td>
+                    <td>{{ cli.ci_cli }}</td>
+                    <td>{{ cli.last_name_cli }} {{ cli.name_cli }} </td>
+                    <td>
+                      <a ng-click="viewCli = !viewCli; llenar_cliente( giveSel,cli.id_cli );" class="btn btn-default"><i class="fa fa-hand-o-up"></i></a>
+                    </td>
+                  </tr>
+                </tbody>
+
+              </table>
+            </div>
+          </div>
+
+
+
+
+          <div class="form-group">
+            <label>Prestamo (Bs.-) </label>
+            <input type="number" class="form-control" placeholder="Ingrese cantidad en Bs.-"
+                ng-model="giveSel.amount" required>
+          </div>
+
+          <div class="form-group">
+            <label>Fecha del prestamo</label>
+            <input type="date" class="form-control"
+                ng-model="giveSel.fec_pre" min="{{fechaMin}}" max="{{fechaMax}}" required>
+          </div>
+
+          <div class="form-group">
+            <label>¿Cuantos Meses? </label>
+            <input type="number" class="form-control" 
+                placeholder="Tiempo en meses"
+                ng-model="giveSel.month" required>
+          </div>
+
+          <div class="form-group">
+            <label>Multa (Bs.-) </label>
+            <input type="number" class="form-control" 
+                placeholder="¿En caso de falla cuanto de multa por dia cobrarias?"
+                ng-model="giveSel.fine" required>
+          </div>
+
+          <div class="form-group">
+            <label>Interes (%) </label>
+            <input type="number" class="form-control" 
+                placeholder="Cantidad de interes %"
+                ng-model="giveSel.interest" required>
+          </div>
+
+          <div class="form-group">
+            <label>Tipo de Prestamo</label>
+            <select type="text" class="form-control" placeholder=""
+                ng-model="giveSel.type" required>
+                <option value="" disabled selected>Selecciona un tipo de prestamo </option>
+                <option value="men">Interes al final capital</option>
+                <option value="menIn">Interes más capital</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Detalle</label>
+            <textarea class="form-control" rows="2" placeholder="Ingrese un detalle"
+                ng-model="giveSel.detail" required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Ganancia asistente (%) </label>
+            <input type="number" class="form-control" 
+                placeholder="Cantidad de ganancia para el asistente %"
+                ng-model="giveSel.gain" required>
+          </div>
+
+
+
+
+        </div><!-- Termina modal-body-->
+
+
+
+
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Guardar</button>
+        </div>
+
+      </form>
+
+
+
+    </div>
+  </div>
+</div>

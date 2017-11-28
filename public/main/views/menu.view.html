@@ -1,0 +1,54 @@
+
+<!-- sidebar: style can be found in sidebar.less -->
+<section class="sidebar">
+
+  <!-- Sidebar user panel (optional) -->
+  <div class="user-panel">
+    <div class="pull-left image">
+      <img ng-show=" mainUser.src == '' " src="app/img/avatar.png" class="img-circle" alt="User Image">
+      <img ng-hide=" mainUser.src == '' " ng-src="app/photos/{{mainUser.src}}" class="img-circle" alt="User Image">
+    </div>
+    <div class="pull-left info">
+      <p>{{ mainUser.name | palabra }} {{ mainUser.last_name | palabra }}</p>
+      <!-- Status -->
+      <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+    </div>
+  </div>
+
+  <!-- search form (Optional) -->
+  <!--<form action="#" method="get" class="sidebar-form">
+    <div class="input-group">
+      <input type="text" name="q" class="form-control" placeholder="Search...">
+          <span class="input-group-btn">
+            <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+            </button>
+          </span>
+    </div>
+  </form>-->
+  <!-- /.search form -->
+
+  <!-- Sidebar Menu -->
+  <ul class="sidebar-menu">
+    <li class="header">Opciones</li>
+    <!-- Optionally, you can add icons to the links -->
+    <li ng-class="mPrincipal"><a ng-href="/prestamoswilson"><i class="fa fa-home"></i> <span>Principal</span></a></li>
+    <li ng-show="userTYPE == 'supad'" ng-class="mUsers"><a ng-href="users/1"><i class="fa fa-users"></i> <span>Usuarios</span></a></li>
+    <li ng-class="mClients"><a ng-href="clients/1"><i class="fa fa-user-plus"></i> <span>Clientes</span></a></li>
+    <li ng-class="mGives"><a ng-href="gives"><i class="fa fa-money"></i> <span>Prestamos</span></a></li>
+    <li ng-class="mReport"><a ng-href="reports"><i class="fa fa-file-text"></i> <span>Reportes</span></a></li>
+    <!--<li ng-hide="userTYPE == 'user'" ng-class="mGraphic"><a ng-href="graphic"><i class="fa fa-pie-chart"></i> <span>Graficos</span></a></li>-->
+    <!--<li class="treeview">
+      <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
+        <span class="pull-right-container">
+          <i class="fa fa-angle-left pull-right"></i>
+        </span>
+      </a>
+      <ul class="treeview-menu">
+        <li><a href="#">Link in level 2</a></li>
+        <li><a href="#">Link in level 2</a></li>
+      </ul>
+    </li>-->
+  </ul>
+  <!-- /.sidebar-menu -->
+</section>
+<!-- /.sidebar -->

@@ -1,0 +1,75 @@
+<div class="login">
+	<div class="text-center titulo">
+		<!--<img src="../app/img/logo.png" class="img-responsive logo" width="50%">-->
+		<h4>Sistema y Control de Prestamos</h4>
+		<h3>Autenticación</h3>
+	</div>
+	<div class="ingresar">
+		<form name="formulario" ng-submit="ingresar( formulario.$valid,data );"
+			  novalidate="novalidate">
+			<div class="row">
+				<div class="hidden-xs hidden-sm col-xs-12 col-md-6">
+					<img ng-src="../app/img/loginIz.png" class="img-responsive">
+				</div>
+				<div class="col-xs-12 col-md-6">
+					<div class="form-group">
+						<label class="control-label" for="correo">Correo</label>
+						<input type="text" class="form-control"
+							placeholder="ejemplo@gmail.com" id="correo"
+							ng-model="data.email"
+							ng-minlength="10"
+							ng-maxlength="30"
+							required="required">
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="pwd">Contraseña</label>
+						<input type="password" class="form-control" 
+							placeholder="******" id="pwd" 
+							ng-minlength="5"
+							ng-maxlength="15"
+							ng-model="data.pwd"
+							required="required">
+					</div>
+					<div class="row">
+						<div class="col-xs-12 col-sm-6 col-md-4" style="margin-bottom:5px;">
+							<button type="submit" class="btn btn-primary btn-lg btn-block"
+									ng-disabled="formulario.$invalid || load"
+									>Entrar</button>
+						</div>
+						<div class="col-xs-12 col-sm-6 col-md-4">
+							<button type="reset" class="btn btn-danger btn-lg btn-block" 
+									ng-click="cancelar();"
+									>Cancelar</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+
+			<div id="mensaje" class="row" ng-show="invalid">
+				<div class="col-md-12 animated bounce">
+					<br>
+					<div class="alert alert-danger">
+						<strong>Verificar!</strong>
+						{{ message }}
+					</div>
+				</div>
+			</div>
+
+		</form>
+		<!-- Small modal 
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</button>
+		-->
+
+		<div id="load" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+			<div class="modal-dialog modal-sm" role="document">
+				<div class="pre-loader">
+					<i class="fa fa-spinner fa-pulse fa-5x fa-fw" aria-hidden="true"></i>
+					<h3>
+						{{ messageEspera }}
+					</h3>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

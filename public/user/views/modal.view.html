@@ -1,0 +1,101 @@
+<div class="modal fade" id="modal_user">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title">Cliente: </h4>
+      </div>
+
+
+      <form name="frmUser"
+            ng-submit="guardar( userSel, frmUser )"
+            novalidate="novalidate">
+
+        <div class="modal-body">
+
+          <div class="form-group">
+            <label>CI</label>
+            <input type="text" class="form-control" placeholder="CI"
+                ng-model="userSel.ci" required>
+          </div>
+
+          <div class="form-group">
+            <label>Expedido</label>
+            <select type="text" class="form-control supad" placeholder="Expedido"
+                ng-model="userSel.ex" required>
+                <option value="" disabled selected>Expedido </option>
+                <option value="Ch">Chuquisaca</option>
+                <option value="Or">Oruro</option>
+                <option value="Pt">Potosi</option>
+                <option value="Cb">Cochabamba</option>
+                <option value="Lp">La paz</option>
+                <option value="Tj">Tarija</option>
+                <option value="Sc">Santa Cruz</option>
+                <option value="Bn">Beni</option>
+                <option value="Pa">Pando</option>
+            </select>
+          </div>
+
+
+          <div class="form-group">
+            <label>Nombre</label>
+            <input type="text" class="form-control" placeholder="Nombre"
+                ng-model="userSel.name" required>
+          </div>
+
+          <div class="form-group">
+            <label>Apellido</label>
+            <input type="text" class="form-control" placeholder="Apellido"
+                ng-model="userSel.last_name" required>
+          </div>
+
+          <div class="form-group">
+            <label>Correo</label>
+            <input type="email" class="form-control" placeholder="ejemplo@algo.algo"
+                ng-model="userSel.email" required>
+          </div>
+
+          <div class="form-group">
+            <label>Sexo</label>
+            <select type="text" class="form-control" placeholder="Sexo"
+                ng-model="userSel.sex">
+                <option value="Masculino">Masculino</option>
+                <option value="Femenino">Femenino</option>
+            </select>
+          </div>
+
+          <div class="form-group" ng-hide="userSel.id">
+            <label>Contraseña</label>
+            <input type="password" class="form-control" placeholder="*****"
+                ng-model="userSel.pwd"
+                ng-minlength="5"
+                ng-maxlength="15"
+                required>
+          </div>
+
+          <div class="form-group">
+            <label>Nivel</label>
+            <select type="text" class="form-control" placeholder="Nivel de usuario"
+                ng-model="userSel.type" required>
+                <option value="user">Usuario</option>
+                <option value="admin">Administrador</option>
+            </select>
+          </div>
+
+        </div>
+
+
+
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Guardar</button>
+        </div>
+
+      </form>
+
+
+
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div>

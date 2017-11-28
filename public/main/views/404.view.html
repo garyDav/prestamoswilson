@@ -1,0 +1,52 @@
+
+<style>
+
+  h1 {
+    margin: 0 10px;
+    font-size: 50px;
+    text-align: center;
+  }
+
+  h1 span {
+    color: #bbb;
+  }
+
+  h3 {
+    margin: 1.5em 0 0.5em;
+  }
+
+  p {
+    margin: 1em 0;
+  }
+
+  ul {
+    padding: 0 0 0 40px;
+    margin: 1em 0;
+  }
+  img {
+    width: 300px;
+  }
+  .container {
+    max-width: 380px;
+    margin: 0 auto;
+  }
+  .triste {
+    font-size:30px;
+  }
+  .mano {
+    cursor: pointer;
+  }
+</style>
+
+<div class="container">
+  <h4>¿Extraviado?<span class="triste"> :(</span></h4>
+  <p>Lo sentimos, pero la página que estaban tratando de ver no existe.</p>
+  <p>Parece que este fue el resultado de cualquiera de los dos:</p>
+  <ul>
+    <li>Una dirección mal escrita</li>
+    <li>Un vínculo fuera de fecha</li>
+  </ul>
+  <a class="mano" ng-click="salir();">Volver a login</a><br>
+  <a href="/prestamos/">Volver a la pagina principal</a><br>
+  <center><img src="app/img/404.jpg" alt="404 Página no encontrada"></center>
+</div>

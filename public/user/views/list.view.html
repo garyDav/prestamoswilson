@@ -1,0 +1,114 @@
+<ol class="breadcrumb animated fadeIn fast">
+    <li><a href="/prestamos"><i class="fa fa-dashboard"></i> Principal</a></li>
+    <li class="active">Usuarios</li>
+</ol>
+<!-- /.filtros -->
+<div class="filtros">
+<div class="busqueda linea b-largo">
+  <label for="busqueda"><i class="fa fa-search mano" aria-hidden="true"></i></label>
+  <input id="busqueda" type="text" placeholder="Busque aqui..." ng-model="busqueda">
+</div>
+</div>
+<!-- /.Fin filtros -->
+
+<div class="row">
+
+	<div class="col-md-12">
+	  <div class="box">
+	    
+	    <div class="box-header with-border">
+	      <h3 class="box-title">Usuarios</h3>
+	
+			<div class="box-tools hidden-xs">
+	            <div class="input-group">
+	              <a class="btn btn-primary"
+	              	ng-click="mostrarModal({})"><i class="fa fa-plus"></i> Agregar usuarios</a>
+	            </div>
+	        </div>
+
+	    </div>
+	    <!-- /.box-header -->
+	    
+	    <div class="box-body" ng-hide="load || !users.users.length">
+	      
+	      <table class="table table-bordered responsive-table-large">
+			<thead>
+				<tr>
+					<th><a class="mano" ng-click="columna='id'; reverse = !reverse;">#</a></th>
+					<th class="tamanioImg">Imagen </th>
+					<th><a class="mano" ng-click="columna='ci'; reverse = !reverse;">CI</a></th>
+					<th><a class="mano" ng-click="columna='name'; reverse = !reverse;">Nombre</a></th>
+					<th><a class="mano" ng-click="columna='last_name'; reverse = !reverse;">Apellido</a></th>
+					<th><a class="mano" ng-click="columna='email'; reverse = !reverse;">Correo </a></th>
+					<th><a class="mano" ng-click="columna='sex'; reverse = !reverse;">Sexo </a></th>
+					<th><a class="mano" ng-click="columna='civil_status'; reverse = !reverse;">Nivel </a></th>
+					<th><a class="mano" ng-click="columna='last_connection'; reverse = !reverse;">Ultima conexion</a></th>
+					<th><a class="mano" ng-click="columna='registered'; reverse = !reverse;">Registrado</a></th>
+					<th ng-show="userTYPE == 'supad'">Acción</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="user in users.users | filter:busqueda | orderBy:columna:reverse">
+					<td>{{ user.id }}</td>
+					<td class="tamanioImg">
+						<img ng-show=" user.src != '' " ng-src="app/photos/{{user.src}}" width="110px">
+					</td>
+					<td>{{ user.ci }} {{ user.ex }}</td>
+					<td>{{ user.name }}</td>
+					<td>{{ user.last_name }}</td>
+					<td>{{ user.email }}</td>
+					<td>{{ user.sex }}</td>
+					<td>{{ user.type }}</td>
+					<td>{{ user.last_connection | date:"short" }}</td>
+					<td>{{ user.registered | date:"fullDate" }}</td>
+
+					<td ng-show="userTYPE == 'supad'">
+						<a ng-click="mostrarModal( user )" class="btn btn-warning"><i class="fa fa-edit"></i></a>
+						<a ng-hide=" user.type == 'supad' " ng-click="eliminar( user.id )" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+					</td>
+				</tr>
+			</tbody>
+
+	      </table>
+
+	
+		</div>
+		<div class="box-body" ng-show="load">
+			<div class="cargando">
+				<i class="fa fa-spinner fa-pulse fa-2x fa-fw" aria-hidden="true"></i>
+				Cargando...
+			</div>
+		</div>
+		<div class="box-body" ng-show="!load && !users.users.length">
+			<div class="cargando">
+				Ingrese nuevos registros.
+			</div>
+		</div>
+
+		<div class="box-footer clearfix" ng-show="users.total_paginas > 1">
+          <ul class="pagination pagination-sm no-margin pull-right">
+            <li><a class="mano" ng-click="moverA(1)">«</a></li>
+
+			<li ng-repeat="pag in users.paginas"
+				ng-class="{
+					'active': users.pag_actual === pag
+				}">
+				<a class="mano" ng-click="moverA(pag)">{{ pag }}</a>
+			</li>
+
+            <li><a class="mano" ng-click="moverA( users.total_paginas )" >»</a></li>
+          </ul>
+        </div>
+
+
+
+		</div>
+	</div>
+
+</div>
+
+
+
+<div class="btn-agregar visible-xs" ng-click="mostrarModal({})"><i class="fa fa-paper-plane-o i-agregar" ></i></div>
+<div ng-include="'public/user/views/modal.view.html'"></div>
+

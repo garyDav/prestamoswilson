@@ -1,0 +1,15 @@
+
+body {
+	background: #22232d;
+	color: #a5d6a7;
+}
+
+.logo {
+  margin: 15px auto;
+  max-width: 250px;
+}
+
+.pre-loader {
+	text-align: center;
+	margin-top: 45%;
+}

@@ -1,0 +1,126 @@
+<div class="modal fade" id="modal_cliente">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title">Cliente: </h4>
+      </div>
+
+
+      <form name="frmCliente"
+            ng-submit="guardar( clienteSel, frmCliente )"
+            novalidate="novalidate">
+
+        <div class="modal-body">
+
+          <div class="form-group">
+            <label>CI</label>
+            <input type="number" class="form-control" placeholder="CI"
+                ng-model="clienteSel.ci" required>
+          </div>
+          
+          <div class="form-group">
+            <label>Expedido</label>
+            <select type="text" class="form-control supad" placeholder="Expedido"
+                ng-model="clienteSel.ex" required>
+                <option value="" disabled selected>Expedido </option>
+                <option value="Ch">Chuquisaca</option>
+                <option value="Or">Oruro</option>
+                <option value="Pt">Potosi</option>
+                <option value="Cb">Cochabamba</option>
+                <option value="Lp">La paz</option>
+                <option value="Tj">Tarija</option>
+                <option value="Sc">Santa Cruz</option>
+                <option value="Bn">Beni</option>
+                <option value="Pa">Pando</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Nombre</label>
+            <input type="text" class="form-control" placeholder="Nombre"
+                ng-model="clienteSel.name" required>
+          </div>
+
+          <div class="form-group">
+            <label>Apellido</label>
+            <input type="text" class="form-control" placeholder="Apellido"
+                ng-model="clienteSel.last_name" required>
+          </div>
+
+          <div class="form-group">
+            <label>Estado Civil</label>
+            <select type="text" class="form-control" placeholder="Estado civil"
+                ng-model="clienteSel.civil_status" required>
+                <option value="solter@">Soltero/a</option>
+                <option value="concubin@">Concubino/a</option>
+                <option value="casad@">Casado/a</option>
+                <option value="divorciad@">Divorciado/a</option>
+                <option value="viud@">Viudo/a</option>
+            </select>
+          </div>
+
+
+
+          <div class="form-group">
+            <label>Profesión</label>
+            <input type="text" class="form-control" placeholder="Profesión"
+                ng-model="clienteSel.profession" required>
+          </div>
+
+          <div class="form-group">
+            <label>Dirección</label>
+            <textarea type="text" class="form-control" placeholder="Dirección"
+                ng-model="clienteSel.address"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Teléfono 1</label>
+            <input type="text" class="form-control" placeholder="Telefono o celular"
+                ng-model="clienteSel.cellphone1" required>
+          </div>
+
+          <div class="form-group">
+            <label>Teléfono 2</label>
+            <input type="text" class="form-control" placeholder="Telefono o celular"
+                ng-model="clienteSel.cellphone2" required>
+          </div>
+
+          <div class="form-group">
+            <label>Fecha de Nacimiento</label>
+            <input type="date" class="form-control"
+                ng-model="clienteSel.fec_nac" min="{{edadMinima}}" max="{{edadMaxima}}" required>
+          </div>
+
+          <div class="form-group">
+            <label>Sexo</label>
+            <select type="text" class="form-control" placeholder="Sexo"
+                ng-model="clienteSel.sex">
+                <option value="Masculino">Masculino</option>
+                <option value="Femenino">Femenino</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Añadir Foto: </label><span>(recomendado) 215px*251px</span>
+            <input type="file" file-model="clienteSel.src">
+          </div>
+
+
+        </div>
+
+
+
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Guardar</button>
+        </div>
+
+      </form>
+
+
+
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div>

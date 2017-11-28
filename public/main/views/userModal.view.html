@@ -1,0 +1,74 @@
+<div class="modal fade" id="modal_userMain">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title">Edita tus datos: </h4>
+      </div>
+
+
+      <form role="form"
+            name="frmUser"
+            ng-submit="editarUserMain( userSelMain, frmUser )"
+            novalidate="novalidate">
+
+        <div class="modal-body">
+
+          <div class="form-group">
+            <label>Correo</label>
+            <input type="email" class="form-control" placeholder="ejemplo@algo.algo"
+                ng-model="userSelMain.email" required>
+          </div>
+
+          <div class="form-group">
+            <label>Contraseña antigua</label>
+            <input type="password" class="form-control" 
+                   placeholder="*****"
+                   disable-valid-styling="true"
+                   ng-minlength="5"
+                   ng-maxlength="15"
+                   ng-model="userSelMain.pwdA">
+          </div>
+
+          <div class="form-group">
+            <label>Nueva contraseña</label>
+            <input type="password" class="form-control"
+                   placeholder="*****"
+                   disable-valid-styling="true"
+                   ng-model-options="{updateOn: 'blur'}"
+                   ng-minlength="5"
+                   ng-maxlength="15"
+                   ng-model="userSelMain.pwdN">
+          </div>
+
+          <div class="form-group has-feedback">
+            <label>Repita contraseña</label>
+            <input type="password" class="form-control"
+                   name="pwdR"
+                   placeholder="*****"
+                   ng-model="userSelMain.pwdR"
+                   coincide="{{userSelMain.pwdN}}">
+          </div>
+
+
+          <div class="form-group">
+            <label>Cambiar Imagen: </label><span>(recomendado) 215px*251px</span>
+            <input type="file" file-model="userSelMain.src">
+          </div>
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Guardar</button>
+          <button ng-click="cancelarUserMain( frmUser )" class="btn btn-default"><i class="fa fa-remove"></i> Cancelar</button>
+        </div>
+
+      </form>
+
+
+
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div>

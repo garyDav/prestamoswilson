@@ -1,0 +1,220 @@
+<ol class="breadcrumb animated fadeIn fast">
+    <li><a href="/prestamos"><i class="fa fa-dashboard"></i> Principal</a></li>
+</ol>
+
+<!--<header class="text-center"><h1>Sistema de prestamos</h1></header>-->
+<div class="creditos">
+  <!-- /.filtros -->
+  <div class="filtros">
+	<div class="busqueda linea b-corto">
+	  <label for="busqueda"><i class="fa fa-search mano" aria-hidden="true"></i></label>
+	  <input id="busqueda" type="text" 
+	  	placeholder="Busque aqui..." 
+		disable-valid-styling="true"
+	  	ng-model="busqueda">
+	</div>
+	<div class="ordenar linea">
+	  <select ng-model="columna">
+		<option value="" disabled selected>Ordenar por...</option>
+		<option value="">Ultimos prestamos </option>
+		<option value="name">Nombre </option>
+		<option value="last_name">Apellido </option>
+		<option value="fec_pre">Fecha de prestamo </option>
+	  </select>
+	</div>
+  </div>
+  <!-- /.Fin filtros -->
+  
+  <!-- /.prestamos -->
+  <!--<div class="prestamos">
+	<div class="prestamo linea">
+	  <div class="plazo">
+		<div class="rojo circulo"></div>
+		<div class="amarillo circulo"></div>
+		<div class="verde circulo"></div>
+	  </div>
+	  <div class="nombre">
+		Juan Perez
+	  </div>
+	  <div class="accion">
+		<i>D</i>
+		<i>O</i>
+		<i>E</i>
+	  </div>
+	</div>
+  </div>-->
+  <!-- /.Fin prestamos -->
+  <!-- Acordeon -->
+
+
+  <div class="panel-group" id="accordion" role="tablist" ng-hide="load || !mgives.give_pay.length">
+	<div class="panel panel-default" ng-repeat="give in mgives.give_pay | filter:busqueda | orderBy:columna">
+	  <div class="panel-heading margin-padding" rol="tab" id="heading{{give.id}}">
+		<h2 class="panel-title">
+		  <div data-toggle="collapse" data-parent="#accordion" data-target="#collapse{{give.id}}">
+			<div class="prestamos">
+			  <div class="prestamo linea">
+				<div class="plazo">
+				  <div class="circulo {{give.fec_pre | colorRojo}}"></div><!-- rojo -->
+				  <div class="circulo {{give.fec_pre | colorAmarillo}}"></div><!-- amarillo -->
+				  <div class="circulo {{give.fec_pre | colorVerde}}"></div><!-- verde -->
+				</div>
+				<div class="nombre mano">
+				  <em class="truncate">{{give.name}} {{give.last_name}} </em>
+				</div>
+				<div class="accion">
+				  <i class="fa fa-file-text fa-2x mano" aria-hidden="true"></i>
+				  <i class="fa fa-eye fa-2x mano" aria-hidden="true"></i>
+				  <!--<i class="fa fa-trash fa-2x mano" aria-hidden="true"></i>-->
+				</div>
+			  </div>
+			</div>
+		  </div>
+		  <!--<a ng-href="#collapse1" data-toggle="collapse" data-parent="#accordion">Encabezado 1</a>-->
+		</h2>
+	  </div>
+	  <div id="collapse{{give.id}}" class="panel-collapse collapse {{ desplegar(mgives.give_pay[0].id,give.id) }}"><!-- abierto->in -->
+		<div class="panel-body">
+		  <!-- Contenido de prestamos -->
+		  <div class="row">
+			<div class="col-xs-3 center-block text-center">
+			  <img ng-hide="give.src" ng-src="app/img/avatar.png" class="img-responsive img-circle" alt="Cliente">
+			  <img ng-show="give.src" ng-src="app/photos/{{give.src}}" class="img-responsive img-circle" alt="Cliente">
+			</div>
+			<div class="col-xs-6">
+			  <div class="form-group">
+			    <label  for="monto">Monto</label>
+			    <div class="input-group">
+			      <input type="text" class="form-control input-lg" id="monto" ng-value="give.amount" disabled>
+			      <div class="input-group-addon">BS.-</div>
+			    </div>
+			  </div>
+			</div>
+			<div class="col-xs-3">
+			  <div data-toggle="modal" ng-click="mostrarModal(give.id);"><!-- data-target="#myModal{{give.id}}" -->
+			  	<i class="fa fa-calendar-check-o fa-4x mano" aria-hidden="true"></i>
+			  </div>
+
+
+			  <!-- Venta Modal Confirmacion de pagos -->
+			  <div class="modal fade" id="myModal{{give.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			    <div class="modal-dialog" role="document">
+			      <div class="modal-content">
+			        <div class="modal-header">
+			          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			          <h4 class="modal-title" id="myModalLabel">Pagos mensuales</h4>
+			        </div>
+			        <div class="modal-body">
+			          <table class="table table-hover responsive-table">
+						<thead>
+							<tr class="mano">
+								<th><i class="fa fa-check-circle mano" aria-hidden="true"></i> </th>
+								<th><i class="fa fa-calendar mano" aria-hidden="true"></i> </th>
+								<th><i class="fa fa-eye-slash mano" aria-hidden="true"></i> </th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="mano" ng-repeat="pay in give.payment">
+								<td class="success"><i class="fa fa-check mano" aria-hidden="true"></i> </td>
+								<td>{{pay.fec_pago}} </td>
+								<td>{{pay.observation}} </td>
+							</tr>
+							<tr class="mano" ng-repeat="npay in give.nopayment">
+								<td class="danger" ng-click="cargarPre(npay.fec_pago,give.id);"><i class="fa fa-times mano" aria-hidden="true"></i> </td>
+								<td>{{npay.fec_pago}}</td>
+								<td>{{npay.observation}} </td>
+							</tr>
+						</tbody>
+					  </table>
+					  <form ng-show="viewForm" class="animated fadeIn" name="formulario"
+			            novalidate="novalidate">
+
+						<div class="form-group">
+				            <input type="hidden" class="form-control"
+				                ng-model="paymentSelt.fec_pago_actual">
+				        </div>
+
+						<div class="form-group">
+				            <label>Fecha del prestamo</label>
+				            <input type="date" class="form-control"
+				                ng-model="paymentSelt.fec_pago"
+				                min="{{fechaMin}}" max="{{fechaMax}}" required>
+				        </div>
+				        <div class="form-group">
+				            <input type="hidden" class="form-control"
+				                ng-model="paymentSelt.id_give">
+				        </div>
+						<div class="form-group">
+				            <label>Detalle</label>
+				            <textarea class="form-control" rows="2" placeholder="Falta pagar"
+				                ng-model="paymentSelt.observation" required></textarea>
+				        </div>
+			          </form>
+
+			        </div>
+
+			        <div class="modal-footer">
+			          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar </button>
+			          <button ng-click="guardarPayment( paymentSelt, formulario )" class="btn btn-primary">Guardar </button>
+			        </div>
+
+			    </div>
+			  </div>
+			  </div>
+
+			  <!-- Fin Venta Modal Confirmacion de pagos -->
+
+			</div>
+		  </div>
+		  <div class="row">
+			<div class="col-xs-6">
+			  <div class="form-group">
+			    <label for="presetamo">Prestamo #{{give.id}}: {{ give.fec_pre | anio }} </label>
+			    <input type="text" class="form-control" id="presetamo" ng-value="give.fec_pre | timeVerbal" disabled>
+			  </div>
+			</div>
+			<div class="col-xs-6">
+			  <div class="form-group">
+			    <label for="ci">CI </label>
+			    <input type="text" class="form-control" id="ci" ng-value="give.ci+' '+give.ex" disabled>
+			  </div>
+			</div>
+		  </div>
+		  <!-- Fin Contenido de prestamos -->
+		</div>
+	  </div>
+	</div>
+
+
+  </div>
+
+  <!-- Fin Acordeon -->
+
+	<div class="box-body" ng-show="load">
+		<div class="cargando">
+			<i class="fa fa-spinner fa-pulse fa-2x fa-fw" aria-hidden="true"></i>
+			Cargando...
+		</div>
+	</div>
+	<div class="box-body" ng-show="!load && !mgives.give_pay.length">
+		<div class="cargando">
+			Ingrese nuevos registros.
+		</div>
+	</div>
+
+	<div class="box-footer clearfix" ng-show="mgives.total_paginas > 1">
+	  <ul class="pagination pagination-sm no-margin pull-right">
+	    <li><a class="mano" ng-click="moverA(mgives.pag_anterior)">«</a></li>
+
+		<li class="active" ng-show="mgives.give_pay.length">
+			<a class="mano" >{{ mgives.pag_actual }}</a>
+		</li>
+
+	    <li><a class="mano" ng-click="moverA( mgives.pag_siguiente )" >»</a></li>
+	  </ul>
+	</div>
+
+</div><!-- /.container -->
+
+
+

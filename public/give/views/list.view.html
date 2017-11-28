@@ -1,0 +1,145 @@
+<ol class="breadcrumb animated fadeIn fast">
+    <li><a href="/prestamos"><i class="fa fa-dashboard"></i> Principal</a></li>
+    <li class="active">Prestamos</li>
+</ol>
+
+
+<!-- /.filtros -->
+<div class="filtros">
+<div class="busqueda linea b-largo">
+  <label for="busqueda"><i class="fa fa-search mano" aria-hidden="true"></i></label>
+  <input id="busqueda" type="text" 
+  	placeholder="Busque aqui..." 
+	disable-valid-styling="true"
+  	ng-model="busqueda">
+</div>
+</div>
+<!-- /.Fin filtros -->
+
+<div class="row">
+
+	<div class="col-md-12">
+	  <div class="box">
+	    
+	    <div class="box-header with-border">
+	      <h3 class="box-title">Prestamos</h3>
+	
+			<div class="box-tools hidden-xs">
+	            <div class="input-group">
+	              <a class="btn btn-primary"
+	              	ng-click="mostrarModal({})"><i class="fa fa-plus"></i> Agregar prestamo</a>
+	            </div>
+	        </div>
+
+	    </div>
+	    <!-- /.box-header -->
+	    
+	    <div class="box-body" ng-hide="load || !gives.give.length">
+	      
+	      <table class="table table-bordered responsive-table-large">
+			<thead>
+				<tr>
+					<th><a class="mano" ng-click="columna='id'; reverse = !reverse;">#</a></th>
+					<th><a class="mano" ng-click="columna='us_ci'; reverse = !reverse;">CI Acreedor</a></th>
+					<th><a class="mano" ng-click="columna='us_name'; reverse = !reverse;">Nombre Acreedor</a></th>
+					<th><a class="mano" ng-click="columna='cli_ci'; reverse = !reverse;">CI Deudor</a></th>
+					<th><a class="mano" ng-click="columna='cli_name'; reverse = !reverse;">Nombre Deudor</a></th>
+					<th><a class="mano" ng-click="columna='amount'; reverse = !reverse;">Prestamo</a></th>
+					<th><a class="mano" ng-click="columna='fec_pre'; reverse = !reverse;">Fecha del prestamo</a></th>
+					<th><a class="mano" ng-click="columna='month'; reverse = !reverse;">Tiempo del prestamo</a></th>
+					<th><a class="mano" ng-click="columna='fine'; reverse = !reverse;">Multa</a></th>
+					<th><a class="mano" ng-click="columna='interest'; reverse = !reverse;">Tasa de interés</a></th>
+					<th><a class="mano" ng-click="columna='type'; reverse = !reverse;">Tipo de prestamo</a></th>
+					<th><a class="mano" ng-click="columna='detail'; reverse = !reverse;">Detalle</a></th>
+					<th><a class="mano" ng-click="columna='gain'; reverse = !reverse;">Ganancia asistente </a></th>
+					<th><a class="mano" ng-click="columna='total_capital'; reverse = !reverse;">Total Capital </a></th>
+					<th><a class="mano" ng-click="columna='total_interest'; reverse = !reverse;">Total intereses </a></th>
+					<th><a class="mano" ng-click="columna='total_lender'; reverse = !reverse;">Total Prestamista </a></th>
+					<th><a class="mano" ng-click="columna='total_assistant'; reverse = !reverse;">Total Asistente </a></th>
+
+					<th ng-show="userTYPE == 'supad'">Acción</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="give in gives.give | filter:busqueda | orderBy:columna:reverse">
+					<td>{{ give.id }}</td>
+					<td>{{ give.us_ci }}</td>
+					<td>{{ give.us_name | palabra }} {{ give.us_last_name | palabra }}</td>
+					<td>{{ give.cli_ci }}</td>
+					<td>{{ give.cli_name | palabra }} {{ give.cli_last_name | palabra }}</td>
+					<td>{{ give.amount }}</td>
+					<td>{{ give.fec_pre | date:"fullDate" }}</td>
+					<td>{{ give.month }} meses</td>
+					<td>{{ give.fine }}</td>
+					<td>{{ give.interest }} %</td>
+					<td ng-show=" give.type == 'men' ">Interes al final capital</td>
+					<td ng-show=" give.type == 'menIn' ">Interes más capital</td>
+					<td title="{{ give.detail }}">{{ give.detail | reducirTexto }}</td>
+					<td>{{ give.gain }} %</td>
+					<td>{{ give.total_capital }}</td>
+					<td>{{ give.total_interest }}</td>
+					<td>{{ give.total_lender }}</td>
+					<td>{{ give.total_assistant }}</td>
+
+					<!-- 
+
+					date:"yyyy/MM/dd" = 2017/04/25
+					date:"medium" = 25/04/2017 14:30:10
+					date:"short" = 25/04/17 14:30
+					date:"fullDate" = martes, 25 de abril de 2017
+					date:"longDate" = 25 de abril de 2017
+					date:"mediumDate" = 25/04/2017
+					date:"shortDate" = 25/04/17
+					date:"mediumTime" = 14:30:10
+					date:"shortTime" = 14:30
+					date = 25/04/2017
+
+					-->
+
+					<td ng-show="userTYPE == 'supad'">
+						<a ng-click="mostrarModal( give )" class="btn btn-warning"><i class="fa fa-edit"></i></a>
+						<a ng-click="eliminar( give.id )" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+					</td>
+				</tr>
+			</tbody>
+
+	      </table>
+
+	
+		</div>
+		<div class="box-body" ng-show="load">
+			<div class="cargando">
+				<i class="fa fa-spinner fa-pulse fa-2x fa-fw" aria-hidden="true"></i>
+				Cargando...
+			</div>
+		</div>
+		<div class="box-body" ng-show="!load && !gives.give.length">
+			<div class="cargando">
+				Ingrese nuevos registros.
+			</div>
+		</div>
+
+		<div class="box-footer clearfix" ng-show="gives.total_paginas > 1">
+          <ul class="pagination pagination-sm no-margin pull-right">
+            <li><a class="mano" ng-click="moverA(gives.pag_anterior)">«</a></li>
+
+			<li class="active" ng-show="gives.give.length">
+				<a class="mano" >{{ gives.pag_actual }}</a>
+			</li>
+
+            <li><a class="mano" ng-click="moverA( gives.pag_siguiente )" >»</a></li>
+          </ul>
+        </div>
+
+
+
+		</div>
+	</div>
+
+</div>
+
+
+
+<div class="btn-agregar visible-xs" ng-click="mostrarModal({})"><i class="fa fa-paper-plane-o i-agregar" ></i></div>
+<div ng-include="'public/give/views/modal.view.html'"></div>
+

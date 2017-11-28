@@ -1,0 +1,136 @@
+<ol class="breadcrumb animated fadeIn fast">
+    <li><a href="/prestamos"><i class="fa fa-dashboard"></i> Principal</a></li>
+    <li class="active">Clientes</li>
+</ol>
+
+<!-- /.filtros -->
+<div class="filtros">
+<div class="busqueda linea b-largo">
+  <label for="busqueda"><i class="fa fa-search mano" aria-hidden="true"></i></label>
+  <input id="busqueda" type="text" placeholder="Busque aqui..." ng-model="busqueda">
+</div>
+</div>
+<!-- /.Fin filtros -->
+
+<div class="row">
+
+	<div class="col-md-12">
+	  <div class="box">
+	    
+	    <div class="box-header with-border">
+	      <h3 class="box-title">Clientes</h3>
+	
+			<div class="box-tools hidden-xs">
+	            <div class="input-group">
+	              <a class="btn btn-primary"
+	              	ng-click="mostrarModal({})"><i class="fa fa-plus"></i> Agregar cliente</a>
+	            </div>
+	        </div>
+
+	    </div>
+	    <!-- /.box-header -->
+	    
+	    <div class="box-body" ng-hide="load || !clientes.clients.length">
+	      
+	      <table class="table table-bordered responsive-table-large">
+			<thead>
+				<tr>
+					<th><a class="mano" ng-click="columna='id'; reverse = !reverse;">#</a></th>
+					<th class="tamanioImg">Imagen </th>
+					<th><a class="mano" ng-click="columna='ci'; reverse = !reverse;">CI</a></th>
+					<th><a class="mano" ng-click="columna='name'; reverse = !reverse;">Nombre</a></th>
+					<th><a class="mano" ng-click="columna='last_name'; reverse = !reverse;">Apellido</a></th>
+					<th><a class="mano" ng-click="columna='civil_status'; reverse = !reverse;">Estado Civil</a></th>
+					<th><a class="mano" ng-click="columna='profession'; reverse = !reverse;">Profesión</a></th>
+					<th><a class="mano" ng-click="columna='address'; reverse = !reverse;">Dirección</a></th>
+					<th><a class="mano" ng-click="columna='cellphone1'; reverse = !reverse;">Teléfono 1</a></th>
+					<th><a class="mano" ng-click="columna='cellphone2'; reverse = !reverse;">Teléfono 2</a></th>
+					<th><a class="mano" ng-click="columna='fec_nac'; reverse = !reverse;">Edad</a></th>
+					<th><a class="mano" ng-click="columna='sex'; reverse = !reverse;">Sexo</a></th>
+					<th><a class="mano" ng-click="columna='registered'; reverse = !reverse;">Registrado</a></th>
+					<th ng-show="userTYPE == 'supad'">Acción</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="cliente in clientes.clients | filter:busqueda | orderBy:columna:reverse">
+					<td>{{ cliente.id }}</td>
+					<td class="tamanioImg">
+						<img ng-show=" cliente.src != '' " ng-src="app/photos/{{cliente.src}}" width="110px">
+					</td>
+					<td>{{ cliente.ci }} {{ cliente.ex }}</td>
+					<td>{{ cliente.name }}</td>
+					<td>{{ cliente.last_name }}</td>
+					<td>{{ cliente.civil_status }}</td>
+					<td>{{ cliente.profession }}</td>
+					<td>{{ cliente.address }}</td>
+					<td>{{ cliente.cellphone1 }}</td>
+					<td>{{ cliente.cellphone2 }}</td>
+					<td>{{ cliente.fec_nac | date: "yyyy-MM-dd" | edad }}</td>
+					<td>{{ cliente.sex }}</td>
+					<td>{{ cliente.registered | date:"fullDate" }}</td>
+
+					<!-- 
+
+					date:"yyyy/MM/dd" = 2017/04/25
+					date:"medium" = 25/04/2017 14:30:10
+					date:"short" = 25/04/17 14:30
+					date:"fullDate" = martes, 25 de abril de 2017
+					date:"longDate" = 25 de abril de 2017
+					date:"mediumDate" = 25/04/2017
+					date:"shortDate" = 25/04/17
+					date:"mediumTime" = 14:30:10
+					date:"shortTime" = 14:30
+					date = 25/04/2017
+
+					 -->
+
+					<td ng-show="userTYPE == 'supad'">
+						<a ng-click="mostrarModal( cliente )" class="btn btn-warning"><i class="fa fa-edit"></i></a>
+						<a ng-click="eliminar( cliente.id )" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+					</td>
+				</tr>
+			</tbody>
+
+	      </table>
+
+	
+		</div>
+		<div class="box-body" ng-show="load">
+			<div class="cargando">
+				<i class="fa fa-spinner fa-pulse fa-2x fa-fw" aria-hidden="true"></i>
+				Cargando...
+			</div>
+		</div>
+		<div class="box-body" ng-show="!load && !clientes.clients.length">
+			<div class="cargando">
+				Ingrese nuevos registros.
+			</div>
+		</div>
+
+		<div class="box-footer clearfix" ng-show="clientes.total_paginas > 1">
+          <ul class="pagination pagination-sm no-margin pull-right">
+            <li><a class="mano" ng-click="moverA(1)">«</a></li>
+
+			<li ng-repeat="pag in clientes.paginas"
+				ng-class="{
+					'active': clientes.pag_actual === pag
+				}">
+				<a class="mano" ng-click="moverA(pag)">{{ pag }}</a>
+			</li>
+
+            <li><a class="mano" ng-click="moverA( clientes.total_paginas )" >»</a></li>
+          </ul>
+        </div>
+
+
+
+		</div>
+	</div>
+
+</div>
+
+
+
+<div class="btn-agregar visible-xs" ng-click="mostrarModal({})"><i class="fa fa-paper-plane-o i-agregar" ></i></div>
+<div ng-include="'public/clients/views/modal.view.html'"></div>
+

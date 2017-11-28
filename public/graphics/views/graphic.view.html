@@ -1,0 +1,29 @@
+<ol class="breadcrumb animated fadeIn fast">
+    <li><a href="/prestamos"><i class="fa fa-dashboard"></i> Principal</a></li>
+    <li class="active">Graficos</li>
+</ol>
+
+
+  
+<style>  
+li{
+    cursor:pointer;  
+}
+li:hover  
+{
+    background-color:#f9f9f9;  
+}
+</style>
+<br /><br />  
+<div class="container">
+    <h3 align="center">AngularJS Tutorial - Make Autocomplete Textbox</h3>
+    <div class="form-group row">
+    	<div class="col-sm-8">
+            <label>Enter Country Name</label>
+            <input type="text" name="country" id="country" ng-model="country" ng-keyup="complete(country)" class="form-control" />
+            <ul class="list-group" ng-model="hidethis" ng-hide="hidethis">
+                <li class="list-group-item" ng-repeat="countrydata in filterCountry" ng-click="fillTextbox(countrydata)">{{countrydata}}</li>
+             </ul>
+    	</div>
+    </div>  
+</div>  

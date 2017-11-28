@@ -1,0 +1,181 @@
+<ol class="breadcrumb animated fadeIn fast">
+    <li><a href="/prestamos"><i class="fa fa-dashboard"></i> Principal</a></li>
+    <li class="active">Reportes</li>
+</ol>
+
+
+<div class="row">
+	<div class="col-md-12">
+	  <div class="box box-success collapsed-box">
+        <div class="box-header with-border">
+          <h3 class="box-title">¿Ingresos en el mes?</h3>
+
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+            </button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>
+            </button>
+          </div>
+          <!-- /.box-tools -->
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+
+		  <form name="frmReport"
+            ng-submit="mostrarModal( month, frmReport )"
+	            novalidate="novalidate">
+
+	          <div class="form-group">
+	            <label>Elige un mes</label>
+	            <select type="text" class="form-control supad" placeholder="Seleccione el mes"
+	                ng-model="month" required>
+	                <option value="" disabled selected>Seleccione el mes </option>
+	                <option value="01">Enero</option>
+	                <option value="02">Febrero</option>
+	                <option value="03">Marzo</option>
+	                <option value="04">Abril</option>
+	                <option value="05">Mayo</option>
+	                <option value="06">Junio</option>
+	                <option value="07">Julio</option>
+	                <option value="08">Agosto</option>
+	                <option value="09">Septiembre</option>
+	                <option value="10">Octubre</option>
+	                <option value="11">Noviembre</option>
+	                <option value="12">Diciembre</option>
+	            </select>
+	          </div>
+
+	        <div class="modal-footer">
+	          <button type="submit" class="btn btn-success"><i class="fa fa-calculator"></i> Calcular</button>
+	        </div>
+
+	      </form>
+
+        </div>
+        <!-- /.box-body -->
+      </div>
+	</div>
+
+	<!-- /.filtros -->
+	<div class="col-md-12 filtros">
+	<div class="busqueda linea b-largo">
+		<label for="busqueda"><i class="fa fa-search mano" aria-hidden="true"></i></label>
+		<input id="busqueda" type="text" placeholder="Busque aqui..." ng-model="busqueda">
+	</div>
+	</div>
+	<!-- /.Fin filtros -->
+
+	<div class="col-md-12">
+	  <div class="box box-warning collapsed-box" ng-repeat="give in rgives.give | filter:busqueda">
+		<div class="box-header with-border">
+	      <h3 class="box-title">ID: #{{give.id}} - Capital: <strong>{{give.amount}}</strong></h3>
+	      <h4>
+	      	Se prestó a: <strong><a class="mano">{{give.cli_name | palabra}} {{give.cli_last_name | palabra}}</a></strong> por {{give.month}} meses 
+	      	<div ng-show="give.visible == '2'" style="float:right;" class="mano" ng-click="hiddenGive(give.id);"><i class="fa fa-eye-slash fa-2x"></i> </div>
+
+	      	<div class="box-tools pull-right">
+	          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+	          </button>
+	          <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>
+	          </button>
+	        </div>
+	      </h4>
+	
+		  <div class="box-tools">
+	        <strong>{{give.fec_pre | date:"longDate"}}</strong>
+	      </div>
+		  
+	    </div>
+	    <!-- /.box-header -->
+
+		<div class="box-body" ng-hide="load || !rgives.give.length">
+			      
+		  <table class="table table-bordered table-condensed responsive-table">
+			<thead>
+				<tr>
+					<th>FECHA</th>
+					<th>CAPITAL</th>
+					<th>INTERES</th>
+					<th>{{give.ac_name | palabra}} {{give.ac_last_name | palabra}}</th>
+					<th>{{give.us_name | palabra}} {{give.us_last_name | palabra}} </th>
+					<th>Observación</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="active" ng-repeat="pay in give.payment">
+					<td>{{pay.fec_pago}}</td>
+					<td>{{pay.capital_shares}} </td>
+					<td>{{pay.interests}} </td>
+					<td>{{pay.lender}} </td>
+					<td>{{pay.assistant}}</td>
+					<td>{{pay.observation}}</td>
+				</tr>
+				<tr class="danger" ng-repeat="npay in give.nopayment">
+					<td>{{npay.fec_pago}}</td>
+					<td>{{npay.capital_shares}} </td>
+					<td>{{npay.interests}} </td>
+					<td>{{npay.lender}} </td>
+					<td>{{npay.assistant}}</td>
+					<td>{{npay.observation}}</td>
+				</tr>
+				<tr>
+					<td><strong>Totales</strong></td>
+					<td>{{ give.total_capital }}</td>
+					<td>{{ give.total_interest }}</td>
+					<td>{{ give.total_lender }}</td>
+					<td>{{ give.total_assistant }}</td>
+					<td></td>
+				</tr>
+					<!-- 
+
+					date:"yyyy/MM/dd" = 2017/04/25
+					date:"medium" = 25/04/2017 14:30:10
+					date:"short" = 25/04/17 14:30
+					date:"fullDate" = martes, 25 de abril de 2017
+					date:"longDate" = 25 de abril de 2017
+					date:"mediumDate" = 25/04/2017
+					date:"shortDate" = 25/04/17
+					date:"mediumTime" = 14:30:10
+					date:"shortTime" = 14:30
+					date = 25/04/2017
+
+					-->
+			</tbody>
+
+		  </table>
+		</div>
+
+	  </div>
+	</div>
+	<div class="col-md-12">
+	  <div class="box" ng-show="!load">
+	  	<div class="box-body" ng-show="load">
+			<div class="cargando">
+				<i class="fa fa-spinner fa-pulse fa-2x fa-fw" aria-hidden="true"></i>
+				Cargando...
+			</div>
+		</div>
+		<div class="box-body" ng-show="!load && !rgives.give.length">
+			<div class="cargando">
+				Ingrese nuevos registros.
+			</div>
+		</div>
+
+		<div class="box-footer clearfix" ng-show="rgives.total_paginas > 1">
+		  <ul class="pagination pagination-sm no-margin pull-right">
+		    <li><a class="mano" ng-click="moverA(rgives.pag_anterior)">«</a></li>
+
+			<li class="active" ng-show="rgives.give.length">
+				<a class="mano" >{{ rgives.pag_actual }}</a>
+			</li>
+
+		    <li><a class="mano" ng-click="moverA( rgives.pag_siguiente )" >»</a></li>
+		  </ul>
+		</div>
+	  </div>
+	</div>
+</div>
+
+
+
+<div ng-include="'public/reports/views/modal.view.html'"></div>

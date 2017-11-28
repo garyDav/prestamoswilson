@@ -1,0 +1,540 @@
+/*.creditos {
+  background: #e9ebee;
+  padding-top: 50px;
+  font-size: 18px;
+}*/
+
+
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+.filtros {
+  /*background: red;*/
+  height: 50px;
+  width: 100%;
+}
+
+.linea {
+  display: inline-block;
+}
+.filtros .b-largo {
+  width: 100%;
+}
+.filtros .b-corto {
+  width: 70%;
+}
+
+.filtros .busqueda {
+  content: close-quote;
+  background: white;
+  border-radius: 15px;
+  padding: 4px 15px;
+  /*box-shadow: inset 0 -1px 6px 0.5px #898989;*/
+}
+.filtros .busqueda:hover {
+  border-radius: 3px;
+  border: 1px solid #c3c3c3;
+}
+
+.filtros .busqueda i {
+  margin-right: 15px;
+  color: #3c3c3c;
+}
+
+.filtros .ordenar {
+  /*background: yellow;*/
+  width: 28%;
+}
+
+.filtros .ordenar select {
+  background: #F5F5F5;
+  width: 100%;
+  height: 42px;
+  padding: 2px;
+  border-radius: 5px;
+  /*box-shadow: inset 0 -1px 6px 0.5px #898989;*/
+  font-size: 14px;
+}
+
+
+.filtros .busqueda input{
+  width: 80%;
+  border: 0px;
+  font-size: 20px;
+}
+
+.filtros .busqueda input:focus {
+  outline: 0px;
+}
+
+.prestamos > .prestamo {
+  /*background: red;*/
+  width: 100%;
+}
+
+.prestamos .prestamo .plazo .circulo {
+  border-radius: 50%;
+  border: 1px solid #bdbdbd;
+  height: 15px;
+  margin: 2px;
+  width: 15px;
+}
+
+.prestamos > .linea *{
+  display: inline-block;
+}
+
+.prestamos .prestamo {
+  /*background: pink;*/
+  border-radius: 5px;
+  /*height: 40px;*/
+  /*margin-bottom: 9px;*/
+  /*padding: 8px;*/
+}
+.panel-title a .prestamos .prestamo {
+  font-size: 18px;
+}
+
+.prestamos .prestamo .plazo {
+  /*background: red;*/
+  float: left;
+  padding-top: 10px;
+}
+
+.prestamos .prestamo .nombre {
+  /*background: yellow;*/
+  padding-top: 10px;
+}
+
+.prestamos .prestamo .accion {
+  /*background: green;*/
+  float: right;
+  border-left: 3px solid #A0A0A0;
+  padding-left: 5px;
+  padding-top: 5px;
+  width: 105px;
+  height: 45px;
+}
+
+.prestamos .prestamo .accion i {
+  /*background: #CCC;*/
+  margin-left: 16px;
+}
+
+.rojo {
+  background: radial-gradient(#ff8a80, #d50000);
+}
+
+.verde {
+  background: radial-gradient(#b9f6ca, #2e7d32);
+}
+
+.amarillo {
+  background: radial-gradient(#ffff8d, #ffd600);
+}
+
+.truncate {
+  line-height: 30px;
+  margin: 0;
+  padding: 0;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.mano {
+  cursor: pointer;
+}
+
+.margin-padding {
+  padding: 0 15px;
+  margin: 0;
+}
+
+.btn-agregar {
+  border: 3px solid #1a237e;
+  text-align: center;
+  background: #fafafa;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  height: 60px;
+  width: 60px;
+}
+
+.i-agregar {
+  color: #1a237e;
+  margin-top: 17px;
+}
+
+.cargando {
+  font: oblique bold 120% cursive;
+  font-size: 25px;
+  text-align: center;
+}
+
+/*.report_alto {
+  height: 50px;
+  overflow: hidden;
+}*/
+
+
+.rmes {
+  font-size: 14px;
+}
+.rmes .en {
+  font-weight: bold;
+}
+
+@media screen and (max-width: 400px) {
+  .rmes {
+    font-size: 11px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 289px) {
+  .truncate {
+    max-width: 110px;
+  }
+}
+
+@media screen and (min-width: 290px) {
+  .truncate {
+    max-width: 5px;
+  }
+}
+
+@media screen and (min-width: 300px) {
+  .truncate {
+    max-width: 15px;
+  }
+}
+
+@media screen and (min-width: 310px) {
+  .truncate {
+    max-width: 25px;
+  }
+}
+
+@media screen and (min-width: 320px) {
+  .truncate {
+    max-width: 35px;
+  }
+}
+
+@media screen and (min-width: 330px) {
+  .truncate {
+    max-width: 45px;
+  }
+}
+
+@media screen and (min-width: 340px) {
+  .truncate {
+    max-width: 55px;
+  }
+}
+
+@media screen and (min-width: 350px) {
+  .truncate {
+    max-width: 65px;
+  }
+}
+
+@media screen and (min-width: 360px) {
+  .truncate {
+    max-width: 75px;
+  }
+}
+
+@media screen and (min-width: 370px) {
+  .truncate {
+    max-width: 85px;
+  }
+}
+
+@media screen and (min-width: 380px) {
+  .truncate {
+    max-width: 95px;
+  }
+}
+
+@media screen and (min-width: 390px) {
+  .truncate {
+    max-width: 105px;
+  }
+}
+
+@media screen and (min-width: 400px) {
+  .truncate {
+    max-width: 115px;
+  }
+}
+
+@media screen and (min-width: 410px) {
+  .truncate {
+    max-width: 125px;
+  }
+}
+
+@media screen and (min-width: 420px) {
+  .truncate {
+    max-width: 135px;
+  }
+}
+
+@media screen and (min-width: 430px) {
+  .truncate {
+    max-width: 145px;
+  }
+}
+
+@media screen and (min-width: 440px) {
+  .truncate {
+    max-width: 155px;
+  }
+}
+
+@media screen and (min-width: 450px) {
+  .truncate {
+    max-width: 165px;
+  }
+}
+
+@media screen and (min-width: 460px) {
+  .truncate {
+    max-width: 175px;
+  }
+}
+
+@media screen and (min-width: 470px) {
+  .truncate {
+    max-width: 185px;
+  }
+}
+
+@media screen and (min-width: 480px) {
+  .truncate {
+    max-width: 195px;
+  }
+}
+
+@media screen and (min-width: 490px) {
+  .truncate {
+    max-width: 205px;
+  }
+}
+
+@media screen and (min-width: 500px) {
+  .truncate {
+    max-width: 215px;
+  }
+}
+
+@media screen and (min-width: 510px) {
+  .truncate {
+    max-width: 225px;
+  }
+}
+
+@media screen and (min-width: 520px) {
+  .truncate {
+    max-width: 235px;
+  }
+}
+
+@media screen and (min-width: 530px) {
+  .truncate {
+    max-width: 245px;
+  }
+}
+
+@media screen and (min-width: 550px) {
+  .truncate {
+    max-width: 265px;
+  }
+}
+
+
+@media only screen and (max-width: 992px) {
+  table.responsive-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    display: block;
+    position: relative;
+    /* sort out borders */
+  }
+  table.responsive-table td:empty:before {
+    content: '\00a0';
+  }
+  table.responsive-table th,
+  table.responsive-table td {
+    margin: 0;
+    vertical-align: top;
+  }
+  table.responsive-table th {
+    text-align: left;
+  }
+  table.responsive-table thead {
+    display: block;
+    float: left;
+  }
+  table.responsive-table thead tr {
+    display: block;
+    padding: 0 10px 0 0;
+  }
+  table.responsive-table thead tr th::before {
+    content: "\00a0";
+  }
+  table.responsive-table tbody {
+    display: block;
+    width: auto;
+    position: relative;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  table.responsive-table tbody tr {
+    display: inline-block;
+    vertical-align: top;
+  }
+  table.responsive-table th {
+    display: block;
+    text-align: right;
+  }
+  table.responsive-table td {
+    display: block;
+    min-height: 1.25em;
+    text-align: left;
+  }
+  table.responsive-table tr {
+    padding: 0 10px;
+  }
+  table.responsive-table thead {
+    border: 0;
+    border-right: 1px solid #d0d0d0;
+  }
+  table.responsive-table.bordered th {
+    border-bottom: 0;
+    border-left: 0;
+  }
+  table.responsive-table.bordered td {
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+  }
+  table.responsive-table.bordered tr {
+    border: 0;
+  }
+  table.responsive-table.bordered tbody tr {
+    border-right: 1px solid #d0d0d0;
+  }
+}
+
+@media only screen and (max-width: 1500px) {
+  table.responsive-table-large {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    display: block;
+    position: relative;
+    /* sort out borders */
+  }
+  table.responsive-table-large td:empty:before {
+    content: '\00a0';
+  }
+  table.responsive-table-large th,
+  table.responsive-table-large td {
+    margin: 0;
+    vertical-align: top;
+  }
+  table.responsive-table-large th {
+    text-align: left;
+  }
+  table.responsive-table-large thead {
+    display: block;
+    float: left;
+  }
+  table.responsive-table-large thead tr {
+    display: block;
+    padding: 0 10px 0 0;
+  }
+  table.responsive-table-large thead tr th::before {
+    content: "\00a0";
+  }
+  table.responsive-table-large tbody {
+    display: block;
+    width: auto;
+    position: relative;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  table.responsive-table-large tbody tr {
+    display: inline-block;
+    vertical-align: top;
+  }
+  table.responsive-table-large th {
+    display: block;
+    text-align: right;
+  }
+  table.responsive-table-large thead tr .tamanioImg {
+    height: 130px;
+  }
+  table.responsive-table-large tbody tr .tamanioImg {
+    height: 130px;
+    overflow: hidden;
+  }
+  table.responsive-table-large td {
+    display: block;
+    min-height: 1.25em;
+    text-align: left;
+  }
+  table.responsive-table-large tr {
+    padding: 0 10px;
+  }
+  table.responsive-table-large thead {
+    border: 0;
+    border-right: 1px solid #d0d0d0;
+  }
+  table.responsive-table-large.bordered th {
+    border-bottom: 0;
+    border-left: 0;
+  }
+  table.responsive-table-large.bordered td {
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+  }
+  table.responsive-table-large.bordered tr {
+    border: 0;
+  }
+  table.responsive-table-large.bordered tbody tr {
+    border-right: 1px solid #d0d0d0;
+  }
+}
